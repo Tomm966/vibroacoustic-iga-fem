@@ -15,5 +15,3 @@ To run the analysis, MATLAB and PARAVIEW (Open Source software) are necessary.
 To optimize computation time, it is also necessary to install the “Parallel Computing Toolbox” package.
 
 You can find how to use the code at this link... https://drive.google.com/file/d/1MObdvOxB2bmUS4V6KsWYE0J6A37VDzfS/view?usp=drive_link
-
-test
