@@ -8,7 +8,7 @@ In the IGA folder, running IGA_VIBRO.m it is possible to get the same as in the 
 The folders 'C_files, meshing and nurbs-util' come from 'Vinh Phu Nguyen et al. “Isogeometric analysis: An overview and computer implementation aspects”. 
 In: Mathematics and Computers in Simulation 117 (Nov. 1, 2015), pp. 89–116. issn: 0378-4754. doi: 10.1016/j.matcom.2015.05.008.'
 
-The folder 'function_TL_CH' contains the all functions needed to reun the analysis and visualize the results.
+The folder 'function_TL_CH' contains the all functions needed to run the analysis and visualize the results.
 
 To run the analysis, MATLAB and PARAVIEW (Open Source software) are necessary.
 
