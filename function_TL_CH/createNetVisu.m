@@ -1,4 +1,4 @@
-function [elemsnet] = createNet(noPtsX,noPtsY,noPtsZ)
+function [elemsnet] = createNetVisu(noPtsX,noPtsY,noPtsZ)
  % WRITTEN BY TOMMASO LANDI AND CHRISTOPHE HOAREAU
 
 % INPUT:
