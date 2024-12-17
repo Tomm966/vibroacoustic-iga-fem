@@ -33,9 +33,9 @@ ele_ord_r = 3; %polynomial order in the AXIAL DIRECTION
 
 % 3D H-REFINEMENT
 noGPs =  max([ele_ord_p,ele_ord_q,ele_ord_r])+2+1; %p+1
-nex =  4 ;  % NUMBER OF ELEMENTS (radial per each volume)
+nex =  2 ;  % NUMBER OF ELEMENTS (radial per each volume)
 ney =  2 ;  % NUMBER OF ELEMENTS (thickness)
-nez =  4 ;  % NUMBER OF ELEMENTS (axial)
+nez =  2 ;  % NUMBER OF ELEMENTS (axial)
 ref_ax   =   nez-1; %if you want 4 elemnt u need to add (4-1) knots
 ref_circ =   nex-1;
 ref_rad  =   ney-1;
