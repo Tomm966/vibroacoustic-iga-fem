@@ -29,26 +29,6 @@ function [nodesTot,elemsTot] = generateElemsIGA2d(controlPts_coupl, ...
                                         noPtsY_coupl, ...
                                         p,q);
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% Identify controle points in interface
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Initialize the coupled nodes
-% nb_control_point_coupl = size(controlPts_coupl,1);
-% idControlPoint_Coupl_in_fluid = zeros(nb_control_point_coupl,1);
-% idControlPoint_Coupl_in_struct = zeros(nb_control_point_coupl,1);
-
-% Iteration of fluid and structural control points
-
-jacob   = zeros(2,2);
-Nxi     = zeros(1,p+1);
-Neta    = zeros(1,q+1);
-dNdxi   = zeros(1,p+1);
-dNdeta  = zeros(1,q+1);
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
 %%% PROCESSING
