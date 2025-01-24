@@ -1,16 +1,5 @@
 function [NURBSnew_struct,Tnew]=refine3D(NURBS,number_of_new_xsi,...
          number_of_new_ni,number_of_new_eta)
-% WRITTEN BY TOMMASO LANDI AND CHRISTOPHE HOAREAU
-
-% INPUT:
-% NURBS: Structure containing the original NURBS data, including control points, weights, knot vectors, and degrees in each direction.
-% number_of_new_xsi: The number of new knots to be inserted along the ξ (u) direction.
-% number_of_new_ni: The number of new knots to be inserted along the η (v) direction.
-% number_of_new_eta: The number of new knots to be inserted along the ζ (w) direction.
-% OUTPUT
-% NURBSnew_struct: Updated NURBS structure after knot insertion.
-% Tnew: Cumulative transformation matrix resulting from the knot insertions.
-
 
 controlPts = NURBS.controlPts;
 noPtsX = NURBS.noPtsX;
@@ -23,8 +12,8 @@ wKnot = NURBS.wknot;
 p = NURBS.p;
 q = NURBS.q;
 r = NURBS.r;
-
-xsi_vec_new = linspace(1/(number_of_new_xsi+1),1-1/(number_of_new_xsi+1),number_of_new_xsi);
+[xsi_vec_new] = equispaceKnot(uKnot,number_of_new_xsi);
+% xsi_vec_new = linspace(1/(number_of_new_xsi+1),1-1/(number_of_new_xsi+1),number_of_new_xsi);
 Bold = controlPts;
 uKnot_old = uKnot;
 noPtsX_old = noPtsX;
@@ -43,7 +32,8 @@ for i = 1:length(xsi_vec_new)
     xsi_new = xsi_vec_new(i);
     weights_old = weights_new;
 end
-ni_vec_new = linspace(1/(number_of_new_ni+1),1-1/(number_of_new_ni+1),number_of_new_ni);
+[ni_vec_new] = equispaceKnot(vKnot,number_of_new_ni);
+% ni_vec_new = linspace(1/(number_of_new_ni+1),1-1/(number_of_new_ni+1),number_of_new_ni);
 Bold = Bnew;
 vKnot_old = vKnot;
 noPtsY_old = noPtsY;
@@ -64,8 +54,8 @@ for i = 1:length(ni_vec_new)
     Tnew = T*Tnew;
     weights_old=weights_new;
 end
-
-eta_vec_new = linspace(1/(number_of_new_eta+1),1-1/(number_of_new_eta+1),number_of_new_eta);
+[eta_vec_new] = equispaceKnot(wKnot,number_of_new_eta);
+% eta_vec_new = linspace(1/(number_of_new_eta+1),1-1/(number_of_new_eta+1),number_of_new_eta);
 Bold = Bnew;
 wKnot_old = wKnot;
 noPtsZ_old = noPtsZ;
