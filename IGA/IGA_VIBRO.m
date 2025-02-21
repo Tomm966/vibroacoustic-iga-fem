@@ -21,6 +21,7 @@ t  = 0.05; %thickness
 %%
 %-----CONSTRUCT GEOMETRY STRUCTURE AND PLOT INITIAL GEOMETRY
 [NURBS_struct_INIT] = generateNURBSDataHollowCylinder(R_s,t,L);
+% [NURBS_struct_INIT] = Car_Structure();
 generateIGAvisu(NURBS_struct_INIT,'Geometry/Structure',1);
 %%
 %---P REFINEMENT (ORIGINAL ORDER p=2,r=2 and r=2) 
@@ -124,6 +125,7 @@ L      = 3;
 clear NURBSnew_fluid
 %-----CONSTRUCT GEOMETRY CAVITY  AND PLOT GEOMETRY
 [NURBS_fluid_INIT] = generateNURBSDataCylinder(R_f,L);
+% [NURBS_fluid_INIT] = Car_Cavity();
 generateIGAvisu(NURBS_fluid_INIT,'Geometry/Cavity',1); %Visualize cavity
 %---P REFINEMENT (ORIGINAL ORDER p=2,r=2 and r=2)
 ele_ord_p_f = ele_ord_p; %RADIAL DIRECTION
@@ -186,7 +188,7 @@ for j=1:10
     generateIGAvisuField(NURBSnew_fluid,'AcousticMode/Refinement',j);
 end
 %%
-%------COUPLING INTERFACE------%
+%------COUPLING INTERFACE FOR CYLINDER APPLICATION------%
 % EXTRACTION SURFACES FROM 3D GEOMETRY
 [NURBSnew_fluid] = extractNURBS2D(NURBSnew_fluid);
 % Selection the surfaces involved in the coupling
@@ -195,7 +197,17 @@ end
 selection  = [1, 4;
               2, 4;
               3, 4;
-              4, 4];
+              4, 4]; %INVOLVED SURFACES FOR CYLINDER APPLICATION
+% selection  = [1, 4;
+%               1, 5;
+%               2, 5;
+%               3, 3;
+%               3, 5;
+%               4, 3;
+%               6, 4;
+%               7, 4;
+%               9, 4;
+%               10,4]; %INVOLVED SURFACES FOR DUMMY CAR APPLICATION
 INTERFACE = [];
 for k = 1:size(selection,1)
     i = selection(k,1);
@@ -230,6 +242,7 @@ end
 for i = 1:size(INTERFACE,2)
     [IGA_c] = AssembleCouplingIGA(INTERFACE(i),IGA_s,IGA_f);
 end
+%%
 % ==========================================================%
 %             ASSEMBLE VIBROACOUSTIC PROBLEM                %
 % ==========================================================%

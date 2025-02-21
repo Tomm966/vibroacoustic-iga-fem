@@ -17,6 +17,7 @@ L      = 3;    %length
 t      = 0.05; %thickness
 Rint   = R_s-t;%internal radius
 [NURBS_s] = generateNURBSDataHollowCylinder(R_s,t,L); %Generate structure
+% [NURBS_s] = Car_Structure(); %Generate dummy car structure
 %-------------------------------
 nex_s =  3 ;  %NUMBER OF ELEMENTS ALONG THE CIRCUMFERENTIAL DIRECTION
 ney_s =  2 ;  %NUMBER OF ELEMENTS ALONG THE THICKNESS DIRECTION
@@ -79,6 +80,7 @@ end
 %----Generate NURBS datas
 R_f      = R_s-t; %fluid radius
 [NURBS_f] = generateNURBSDataCylinder(R_f,L); %generate fluid cavity
+% [NURBS_f] = Car_Cavity(); %Generate dummy car cavity
 ney_f =  nex_s ;
 [nodesf,elemsf,elems_skinf]=generateMeshFromNURBS(nex_s,ney_f,nez_s,2,NURBS_f);
 %------PLOT FLUID FEM MESH
@@ -106,7 +108,7 @@ for i = 1:20 %number of fluid modes to plot
     matlab2VTK_fluid(fmesh.nodes,fmesh.elems,Phi_f(:,i),['Acoustic_Mode/Modefluid_',num2str(i)])
 end
 %%
-%---Generate INTERFACE
+%---Generate INTERFACE for cylinder application
 %====================================================
 %------------FSi surface from fluid mesh------------%
 %====================================================
@@ -141,6 +143,53 @@ Ps = zeros(nnodess,1);
 matlab2VTK_interface(nodess,elemsfsis,Us,Ps,'MESH/fsimeshstructure')
 %--------------BUILD COUPLING MATRICES
 [Cfsi,Area]=couplingMatrix3DMatching(elemsfsif,elemsfsis,ndoff,ndofs,nodess,nodesf,rhof);
+%%
+%---Generate INTERFACE for dummy car application
+%======================================================%
+%------------FSi surface from fluid mesh---------------%
+%======================================================%
+% tol = 10^-10;
+% [isInNodesF, indicesInNodesF] = ismembertol(smesh.nodes, fmesh.nodes, 'ByRows', tol);
+% 
+% % Filtra solo le righe comuni
+% commonIndicesF = indicesInNodesF(isInNodesF);
+% logical_index_f = all(ismember(elems_skin_f, commonIndicesF), 2);
+% elemsfsif = elems_skin_f(logical_index_f, :);
+% 
+% %======================================================
+% % Mesh fsi (from fluid)
+% %======================================================
+% nnodesf = size(fmesh.nodes,1);
+% ndoff=  size(fmesh.nodes,1);
+% Uf = zeros(3*nnodesf,1);
+% Pf = zeros(ndoff,1);
+% matlab2VTK_interface(fmesh.nodes,elemsfsif,Uf,Pf,'Interface/fsimeshfluid')
+% 
+% %======================================================
+% %------------FSi surface from structure mesh
+% %======================================================
+% tol = 10^-10;
+% [isInNodesS, indicesInNodesS] = ismembertol(fmesh.nodes, smesh.nodes, 'ByRows', tol);
+% 
+% % Filtra solo le righe comuni
+% commonIndicesS = indicesInNodesS(isInNodesS);
+% logical_index_s = all(ismember(elems_skin_s, commonIndicesS), 2);
+% elemsfsis = elems_skin_s(logical_index_s, :);
+% 
+% %======================================================
+% % Mesh fsi (from structure)
+% %======================================================
+% ndofs=  3*size(smesh.nodes,1);
+% Us = zeros(ndofs,1);
+% nnodess = size(smesh.nodes,1);
+% Ps = zeros(nnodess,1);
+% matlab2VTK_interface(smesh.nodes,elemsfsis,Us,Ps,'Interface/fsimeshstructure1')
+% 
+% %======================================================
+% %---------------------Coupling matrix matching
+% %======================================================
+% 
+% [Cfsi,Area]=couplingMatrix3DMatching(elemsfsif,elemsfsis,ndoff,ndofs,nodes_s,nodes_f,rhof);
 %%
 % VIBROACOUSTIC PROBLEM
 %==============================%
