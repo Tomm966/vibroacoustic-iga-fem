@@ -9,8 +9,8 @@ vKnot = NURBS2D.vknot;
 p = NURBS2D.p;
 q = NURBS2D.q;
 
-% xsi_vec_new = equispaceKnot(uKnot,number_of_new_xsi);
-xsi_vec_new = linspace(1/(number_of_new_xsi+1),1-1/(number_of_new_xsi+1),number_of_new_xsi);
+xsi_vec_new = equispaceKnot(uKnot,number_of_new_xsi);
+% xsi_vec_new = linspace(1/(number_of_new_xsi+1),1-1/(number_of_new_xsi+1),number_of_new_xsi);
 Bold = B;
 uKnot_old = uKnot;
 noPtsX_old = noPtsX;
@@ -29,8 +29,8 @@ for i = 1:length(xsi_vec_new)
     xsi_new = xsi_vec_new(i);
     weights_old = weights_new;
 end
-% eta_vec_new = equispaceKnot(vKnot,number_of_new_eta);
-eta_vec_new = linspace(1/(number_of_new_eta+1),1-1/(number_of_new_eta+1),number_of_new_eta);
+eta_vec_new = equispaceKnot(vKnot,number_of_new_eta);
+% eta_vec_new = linspace(1/(number_of_new_eta+1),1-1/(number_of_new_eta+1),number_of_new_eta);
 Bold = Bnew;
 vKnot_old = vKnot;
 noPtsY_old = noPtsY;
