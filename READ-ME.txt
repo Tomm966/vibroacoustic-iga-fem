@@ -35,4 +35,4 @@ For detailed instructions on how to use the code, refer to this link: https://dr
 %---------------------Citation---------------------%
 
 If you use this code, please cite:
-T. Landi, C. Hoareau, J.F. Deu, R. Ohayon, and R. Citarella, Comparative vibroacoustic analyses: FEM vs IGA.
+Landi, T., Hoareau, C., Deü, JF. et al. Comparative vibroacoustic analyses: FEM vs. IGA. Comput Mech (2025). https://doi.org/10.1007/s00466-025-02639-9
