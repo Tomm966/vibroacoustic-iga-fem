@@ -1,0 +1,38 @@
+This code enables Structural, Acoustic, and Vibroacoustic Modal Analysis using FEM and IGA in 3D (as well as in 1D and 2D).
+Natural frequencies and mode shapes can be visualized using Paraview.
+
+
+%---------------------How to Use---------------------%
+
+=======FEM Analysis:
+
+By running FEM_VIBRO.m in the FEM folder, you can obtain:
+
+-Structural modes of a 3D hollow cylinder and a 3D cylindrical acoustic cavity.
+-Structural and acoustic modes for a simplified vehicle model.
+-3D vibroacoustic frequencies computed using a reduced model.
+
+=======IGA Analysis:
+
+By running IGA_VIBRO.m in the IGA folder, you can obtain the same results as in the FEM analysis.
+
+
+%---------------------Additional Information---------------------%
+
+The folders 'C_files', 'meshing', and 'nurbs-util' originate from:
+
+Vinh Phu Nguyen et al., “Isogeometric analysis: An overview and computer implementation aspects, Mathematics and Computers in Simulation 117 (Nov. 1, 2015), pp. 89–116. DOI: 10.1016/j.matcom.2015.05.008”
+
+The 'function_TL_CH' folder contains all the necessary functions to run the analysis and visualize the results.
+
+
+%---------------------Requirements---------------------%
+
+MATLAB and Paraview (Open Source) are required.
+To optimize computation time, the Parallel Computing Toolbox must be installed.
+For detailed instructions on how to use the code, refer to this link: https://drive.google.com/file/d/1MObdvOxB2bmUS4V6KsWYE0J6A37VDzfS/view?usp=drive_link
+
+%---------------------Citation---------------------%
+
+If you use this code, please cite:
+Landi, T., Hoareau, C., Deü, JF. et al. Comparative vibroacoustic analyses: FEM vs. IGA. Comput Mech (2025). https://doi.org/10.1007/s00466-025-02639-9
